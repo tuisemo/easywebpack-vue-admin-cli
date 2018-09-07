@@ -7,8 +7,8 @@ Vue.use(Router);
 import Layout from '@/components/layout/vueAdmin/Layout';
 
 /** note: submenu only apppear when children.length>=1
-*   detail see  https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
-**/
+ *   detail see  https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
+ **/
 
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
@@ -24,91 +24,151 @@ import Layout from '@/components/layout/vueAdmin/Layout';
     noCache: true                if true ,the page will no be cached(default is false)
   }
 **/
-export const constantRouterMap = [
-  // { path: '/login', component: () => import('@/views/login/index'), hidden: true },
-  {
-    path: '',
-    component: Layout,
-    redirect: 'dashboard',
-    children: [{
-      path: 'dashboard',
-      component: () => import('@/page/app/index'),
-      name: 'dashboard',
-      meta: { title: 'dashboard', icon: 'dashboard', noCache: true }
-    }]
-  },
-  {
-    path: '/fas',
-    component: Layout,
-    redirect: 'dashboard',
-    children: [{
-      path: 'dashboard',
-      component: () => import('@/page/app/index'),
-      name: 'dashboard',
-      meta: { title: 'dashboard', icon: 'dashboard', noCache: true }
-    }]
-  },
-  { path: '/404', component: () => import('@/page/errorPage/404'), hidden: true },
+export const constantRouterMap = [{
+  path: '',
+  component: Layout,
+  redirect: 'home',
+  children: [{
+    path: 'home',
+    component: () =>
+        import('@/page/app/index'),
+    name: 'home',
+    meta: {
+      title: 'home',
+      icon: 'index',
+      noCache: true
+    }
+  }]
+},
+{
+  path: '/business',
+  component: Layout,
+  redirect: '/business/index',
+  children: [{
+    path: 'index',
+    component: () =>
+        import('@/page/app/index'),
+    name: 'business',
+    meta: {
+      title: 'business',
+      icon: 'business',
+      noCache: true
+    }
+  }]
+},
+{
+  path: '/carModel',
+  component: Layout,
+  redirect: '/carModel/index',
+  children: [{
+    path: 'index',
+    component: () =>
+        import('@/page/app/index'),
+    name: 'carModel',
+    meta: {
+      title: 'carModel',
+      icon: 'carModel',
+      noCache: true
+    }
+  }]
+},
+{
+  path: '/404',
+  component: () =>
+      import('@/page/errorPage/404'),
+  hidden: true
+},
 ];
 
 export default new Router({
   mode: 'history', // require service support
   base: '/app',
-  scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior: () => ({
+    y: 0
+  }),
   routes: constantRouterMap
 });
 // =====*mark*=====此部分路由涉及权限控制，故在permission.js中根据角色判定是否动态添加至全局router中
 export const asyncRouterMap = [
-  /* API 管理*/
+  /* 应用配置*/
   {
-    path: '/apimanage',
+    path: '/appConfig',
     component: Layout,
-    redirect: '/apimanage/list',
-    name: 'apiManage',
+    redirect: '/appConfig/page',
+    // alwaysShow: true, // will always show the root menu
+    meta: {
+      title: 'appConfig',
+      icon: 'lock',
+      roles: ['admin', 'editor'] // you can set roles in root nav
+    },
     children: [{
-      path: 'list',
-      component: () => import('@/page/app/index'),
-      name: 'list',
+      path: 'page',
+      component: () =>
+        import('@/page/app/index'),
+      name: 'appConfig',
       meta: {
-        title: 'apiManage',
-        icon: 'businesscard',
+        title: 'appConfig',
+        roles: ['admin'] // or you can only set roles in sub nav
+      },
+    }, {
+      path: 'sub',
+      component: () =>
+        import('@/page/app/index'),
+      name: 'sub',
+      meta: {
+        title: 'sub',
+        roles: ['admin'] // or you can only set roles in sub nav
+      },
+    } ]
+  },
+  /* API 统计*/
+  {
+    path: '/apiCount',
+    component: Layout,
+    name: '/apiCount/index',
+    alwaysShow: true, // will always show the root menu
+    meta: {
+      title: 'apiCount',
+      icon: 'lock',
+      roles: ['admin'],
+      noCache: true
+    },
+    children: [{
+      path: '',
+      component: () =>
+        import('@/page/app/index'),
+      name: 'apiCount',
+      meta: {
+        title: 'apiCount',
         noCache: true
       },
-    }, {// 查看API详情
-      path: 'details',
-      component: () => import('@/page/app/index'),
-      name: 'details',
+    } ]
+  },
+  /* API 统计*/
+  {
+    path: '/messageCount',
+    component: Layout,
+    name: 'applicationConfig',
+    meta: {
+      title: 'applicationConfig',
+      icon: 'applicationConfig',
+      noCache: true
+    },
+    children: [{
+      path: 'index',
+      component: () =>
+        import('@/page/app/index'),
+      name: 'applicationConfig',
       meta: {
-        title: 'apiDetails',
+        title: 'applicationConfig',
         noCache: true
       },
-    }, { // 保存API
-      path: 'create',
-      component: () => import('@/page/app/index'),
-      name: 'create',
-      meta: {
-        title: 'createApi',
-        noCache: true
-      }
-    }, {// 修改API
-      path: 'update',
-      component: () => import('@/page/app/index'),
-      name: 'update',
-      meta: {
-        title: 'updateApi',
-        noCache: true
-      }
-    }, {// 详情图表展示
-      path: 'chartsPage',
-      component: () => import('@/page/app/index'),
-      name: 'chartsPage',
-      meta: {
-        title: 'chartsPage',
-        noCache: true
-      }
-    }
-    ]
+    } ]
   },
 
-  { path: '*', redirect: '/404', hidden: true }
+  {
+    path: '*',
+    redirect: '/404',
+    hidden: true
+  }
 ];
