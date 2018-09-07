@@ -27,14 +27,14 @@ import Layout from '@/components/layout/vueAdmin/Layout';
 export const constantRouterMap = [{
   path: '',
   component: Layout,
-  redirect: 'home',
+  redirect: 'index',
   children: [{
-    path: 'home',
+    path: 'index',
     component: () =>
-        import('@/page/app/index'),
-    name: 'home',
+        import('@/page/statistics/index'),
+    name: 'index',
     meta: {
-      title: 'home',
+      title: 'index',
       icon: 'index',
       noCache: true
     }
@@ -43,11 +43,10 @@ export const constantRouterMap = [{
 {
   path: '/business',
   component: Layout,
-  redirect: '/business/index',
   children: [{
-    path: 'index',
+    path: '',
     component: () =>
-        import('@/page/app/index'),
+        import('@/page/business/index'),
     name: 'business',
     meta: {
       title: 'business',
@@ -59,11 +58,10 @@ export const constantRouterMap = [{
 {
   path: '/carModel',
   component: Layout,
-  redirect: '/carModel/index',
   children: [{
-    path: 'index',
+    path: '',
     component: () =>
-        import('@/page/app/index'),
+        import('@/page/business/index'),
     name: 'carModel',
     meta: {
       title: 'carModel',
@@ -94,7 +92,6 @@ export const asyncRouterMap = [
   {
     path: '/appConfig',
     component: Layout,
-    redirect: '/appConfig/page',
     // alwaysShow: true, // will always show the root menu
     meta: {
       title: 'appConfig',
@@ -104,7 +101,7 @@ export const asyncRouterMap = [
     children: [{
       path: 'page',
       component: () =>
-        import('@/page/app/index'),
+        import('@/page/business/index'),
       name: 'appConfig',
       meta: {
         title: 'appConfig',
@@ -113,10 +110,10 @@ export const asyncRouterMap = [
     }, {
       path: 'sub',
       component: () =>
-        import('@/page/app/index'),
+        import('@/page/business/index'),
       name: 'sub',
       meta: {
-        title: 'sub',
+        title: 'appConfig',
         roles: ['admin'] // or you can only set roles in sub nav
       },
     } ]
@@ -125,10 +122,9 @@ export const asyncRouterMap = [
   {
     path: '/apiCount',
     component: Layout,
-    name: '/apiCount/index',
     alwaysShow: true, // will always show the root menu
     meta: {
-      title: 'apiCount',
+      title: 'appConfig',
       icon: 'lock',
       roles: ['admin'],
       noCache: true
@@ -136,7 +132,7 @@ export const asyncRouterMap = [
     children: [{
       path: '',
       component: () =>
-        import('@/page/app/index'),
+        import('@/page/business/index'),
       name: 'apiCount',
       meta: {
         title: 'apiCount',
@@ -148,19 +144,18 @@ export const asyncRouterMap = [
   {
     path: '/messageCount',
     component: Layout,
-    name: 'applicationConfig',
     meta: {
-      title: 'applicationConfig',
+      title: 'messageCount',
       icon: 'applicationConfig',
       noCache: true
     },
     children: [{
-      path: 'index',
+      path: '',
       component: () =>
-        import('@/page/app/index'),
-      name: 'applicationConfig',
+        import('@/page/home/index'),
+      name: 'messageCount',
       meta: {
-        title: 'applicationConfig',
+        title: 'messageCount',
         noCache: true
       },
     } ]

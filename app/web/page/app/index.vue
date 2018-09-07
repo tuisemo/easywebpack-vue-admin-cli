@@ -1,9 +1,10 @@
+<!--应用入口-->
 <template>
     <Layout title="单页面">
         <transition name="fade" mode="out-in">
-            <router-view></router-view>
+          <router-view></router-view>
         </transition>
-    </Layout>
+    </Layout> 
 </template>
 
 <script type="text/babel">
@@ -19,9 +20,8 @@ import router from '@/router';
 import i18n from '@/lang';
 import '@/icons';
 import './permission';
+import * as filters from '@/framework/utils/utils.js'; // global filters
 
-// import Layout from 'component/layout/app';
-// import './filters';
 Vue.use(Element, {
   size: 'medium', // set element-ui default size
   i18n: (key, value) => {
@@ -29,9 +29,16 @@ Vue.use(Element, {
   }
 });
 
+Vue.config.productionTip = false;
+// 批量导入过滤器
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key]);
+});
+
 sync(store, router);
 
 export default {
+  name: 'App',
   router,
   store,
   i18n

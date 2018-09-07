@@ -1,7 +1,7 @@
 
 import MainLayout from './Layout';
 
-const content = '<div id="app"><MainLayout><div slot="main"><slot></slot></div></MainLayout></div>';
+const content = '<div id="app"><MainLayout><div slot="main" ><slot></slot></div></MainLayout></div>';
 
 const template = `<!DOCTYPE html>
 <html lang="en">
@@ -26,13 +26,13 @@ export default {
   },
   computed: {
     vTitle() {
-      return this.$root.title || this.title || 'Egg + Vue';
+      return this.$root.title || this.title || '约约出行 3.0';
     },
     vKeywords() {
-      return this.$root.keywords || this.keywords || 'egg, vue, webpack, server side render';
+      return this.$root.keywords || this.keywords || '约约出行 3.0';
     },
     vDescription() {
-      return this.$root.description || this.description || 'egg-vue-webpack server side render';
+      return this.$root.description || this.description || '约约出行 3.0';
     },
     baseClass() {
       return this.$root.baseClass;

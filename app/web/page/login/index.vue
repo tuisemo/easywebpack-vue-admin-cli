@@ -57,6 +57,7 @@ import Vue from 'vue';
 import Element from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import i18n from '@/lang';
+import '@/icons';
 import store from '@/store';
 import 'normalize.css/normalize.css';
 import { isvalidUsername } from '@/utils/validate';

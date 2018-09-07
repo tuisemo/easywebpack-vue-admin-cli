@@ -17,7 +17,7 @@ module.exports = {
   alias: {
     server: 'app/web/framework/vue/entry/server.js',
     client: 'app/web/framework/vue/entry/client.js',
-    app: 'app/web/framework/vue/app.js',
+    // app: 'app/web/framework/vue/app.js',
     assets: 'app/web/assets',
     components: 'app/web/components',
     framework: 'app/web/framework',
@@ -51,7 +51,29 @@ module.exports = {
         options: {
           symbolId: 'icon-[name]'
         }
+      },
+      // {
+      //   test: /\.js$/,
+      //   loader: 'babel-loader',
+      //   include: [
+      //     resolve('app'),
+      //     resolve('node_modules/vue-echarts'),
+      //     resolve('node_modules/resize-detector')
+      //   ]
+      // },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        include: [
+          // resolve('app'),
+          resolve('node_modules/vue-echarts'),
+          resolve('node_modules/resize-detector')
+        ]
       }
     ]
-  }
+  },
+  // transpileDependencies: [
+  //   resolve('node_modules/vue-echarts'),
+  //   resolve('node_modules/resize-detector'),
+  // ]
 };
