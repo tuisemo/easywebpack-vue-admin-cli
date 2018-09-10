@@ -1,27 +1,14 @@
-<!-- 数据统计 -->
+<!-- 订单图表统计 -->
 <template>
   <div>
-    <!-- <chart :options="polar"></chart> -->
-    <el-row :gutter="20">
-      <el-col :span="12">
-       <order-chart></order-chart>
-      </el-col>
-      <el-col :span="12">
-       <chart :options="polar" :auto-resize="true"></chart>
-      </el-col>
-    </el-row>
+      <chart :options="polar" :auto-resize="true"></chart>
   </div>
 </template>
 
 <script>
-import orderChart from './components/orderChart';
 export default {
-  components: {
-    orderChart
-  },
   data() {
     const data = [];
-
     for (let i = 0; i <= 360; i++) {
       const t = i / 180 * Math.PI;
       const r = Math.sin(2 * t) * Math.cos(2 * t);
@@ -66,8 +53,5 @@ export default {
   },
 };
 </script>
-<style lang='less'>
-  .echarts{
-    width: 100%;
-  }
+<style lang='less' scoped>
 </style>

@@ -61,7 +61,7 @@ export const constantRouterMap = [{
   children: [{
     path: '',
     component: () =>
-        import('@/page/business/index'),
+        import('@/page/carModel/index'),
     name: 'carModel',
     meta: {
       title: 'carModel',

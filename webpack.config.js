@@ -61,15 +61,15 @@ module.exports = {
       //     resolve('node_modules/resize-detector')
       //   ]
       // },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        include: [
-          // resolve('app'),
-          resolve('node_modules/vue-echarts'),
-          resolve('node_modules/resize-detector')
-        ]
-      }
+      // {
+      //   test: /\.vue$/,
+      //   loader: 'vue-loader',
+      //   include: [
+      //     // resolve('app'),
+      //     resolve('node_modules/vue-echarts'),
+      //     resolve('node_modules/resize-detector')
+      //   ]
+      // }
     ]
   },
   // transpileDependencies: [

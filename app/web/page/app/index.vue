@@ -1,16 +1,17 @@
 <!--应用入口-->
 <template>
-    <Layout title="单页面">
+    <div id="app" title="单页面">
         <transition name="fade" mode="out-in">
           <router-view></router-view>
         </transition>
-    </Layout> 
+    </div> 
 </template>
 
 <script type="text/babel">
 import Vue from 'vue';
 import 'normalize.css/normalize.css'; // A modern alternative to CSS resets
 import Element from 'element-ui';
+
 import 'element-ui/lib/theme-chalk/index.css';
 
 import store from '@/store/';
